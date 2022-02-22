@@ -13,6 +13,7 @@ import * as moment from 'moment';
 export class TabWeatherComponent implements OnInit {
   cachedWeather;
   weather;
+  intervalInSeconds = 3600;
 
   constructor(
     public shared: SharedService,
@@ -31,6 +32,10 @@ export class TabWeatherComponent implements OnInit {
         this.setWeather();
       }
     });
+
+    setInterval(() => {
+      this.setWeather();
+    }, this.intervalInSeconds * 1000);
   }
 
   setWeather() {
